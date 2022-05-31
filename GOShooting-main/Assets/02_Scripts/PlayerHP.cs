@@ -7,28 +7,31 @@ public class PlayerHP : MonoBehaviour
     [SerializeField] float maxHP = 10;
     float currentHP;
     SpriteRenderer spriteRenderer;
+    PlayerController playerController;
+public float MaxHP=> maxHP;
+public float CurrentHP => currentHP;
+    // public float MaxHP
+    // {
+    //     get
+    //     {
+    //         return maxHP;
+    //     }
+    // }
 
-    public float MaxHP
-    {
-        get
-        {
-            return maxHP;
-        }
-    }
-
-    public float CurrentHP
-    {
-        get
-        {
-            return currentHP;
-        }
-    }
+    // public float CurrentHP
+    // {
+    //     get
+    //     {
+    //         return currentHP;
+    //     }
+    // }
 
 
     void Start()
     {
         currentHP = maxHP;
         spriteRenderer = GetComponent<SpriteRenderer>();
+        playerController =GetComponent<PlayerController>();
     }
 
 
@@ -37,6 +40,9 @@ public class PlayerHP : MonoBehaviour
         currentHP -= damage;
         StopCoroutine("HitColorAnimation");
         StartCoroutine("HitColorAnimation");
+        if(currentHP<0){
+            playerController.Die();
+        }
     }
 
     IEnumerator HitColorAnimation()

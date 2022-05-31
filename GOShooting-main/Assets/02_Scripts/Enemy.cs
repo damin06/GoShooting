@@ -7,12 +7,14 @@ public class Enemy : MonoBehaviour
     [SerializeField] float damage = 1;
     [SerializeField] int scorePoint = 100;
     PlayerController playerController;
+    [SerializeField] GameObject explosionPrfab;
+
 
     private void Awake()
     {
-        //¼¼°³ ´Ù ¶È°°´Ù°í »ý°¢ÇÏ¸é µÊ
+        //ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½È°ï¿½ï¿½Ù°ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï¸ï¿½ ï¿½ï¿½
         playerController = FindObjectOfType<PlayerController>();
-        //°ÔÀÓ ¿ÀºêÀèÆ® ÀÌ¸§À¸·Î Ã£±âplayerController = GameObject.Find("Player").GetComponent<PlayerController>();
+        //ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ® ï¿½Ì¸ï¿½ï¿½ï¿½ï¿½ï¿½ Ã£ï¿½ï¿½playerController = GameObject.Find("Player").GetComponent<PlayerController>();
         //playerController = GameObject.FindGameObjectsWithTag("Player").GetComponent<PlayerController>();
     }
 
@@ -28,6 +30,8 @@ public class Enemy : MonoBehaviour
 
     public void Die()
     {
+       GameObject clon= Instantiate(explosionPrfab,transform.position,Quaternion.identity);
+        Destroy(clon,1f);
         playerController.Score += scorePoint;
         Destroy(gameObject);
     }

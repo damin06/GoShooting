@@ -162,3 +162,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 1
+  scorePoint: 100
+  explosionPrfab: {fileID: 4633590884598896094, guid: 1c912c10c1cac6441a7c575c2a8884b2, type: 3}
