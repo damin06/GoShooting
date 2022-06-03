@@ -8,10 +8,11 @@ public class Enemy : MonoBehaviour
     [SerializeField] int scorePoint = 100;
     PlayerController playerController;
     [SerializeField] GameObject explosionPrfab;
-
+ObjectPloor enemylooler;
 
     private void Awake()
     {
+        enemylooler = GameObject.Find("EnemySpwaner").GetComponent<ObjectPloor>();
         //���� �� �Ȱ��ٰ� �����ϸ� ��
         playerController = FindObjectOfType<PlayerController>();
         //���� ������Ʈ �̸����� ã��playerController = GameObject.Find("Player").GetComponent<PlayerController>();
@@ -31,7 +32,8 @@ public class Enemy : MonoBehaviour
     public void Die()
     {
        GameObject clon= Instantiate(explosionPrfab,transform.position,Quaternion.identity);
-        Destroy(clon,1f);
+       enemylooler.ReturnObject(gameObject);
+       // Destroy(clon,1f);
         playerController.Score += scorePoint;
         Destroy(gameObject);
     }
